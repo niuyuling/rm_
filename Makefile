@@ -5,7 +5,7 @@ CFLAGS += -g -O2 -Wall
 LIBS = -static
 OBJ := rm_
 
-all: rm_.o cp.o
+all: rm_.o
 	$(CC) $(CFLAGS) -o $(OBJ) $^ $(LIBS)
 	$(STRIP) $(OBJ)
 	-chmod a+x $(OBJ)

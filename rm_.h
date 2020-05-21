@@ -3,13 +3,13 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-#define DELETE "/delete/"
 #define CACHE_SIZE 270
-
-#include "cp.h"
 
 #endif
