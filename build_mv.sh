@@ -44,5 +44,5 @@ function MV() {
 }
 
 init
-#LIB
+LIB
 MV
