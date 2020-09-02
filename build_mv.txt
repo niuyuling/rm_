@@ -1,0 +1,63 @@
+
+
+# MV
+gcc -I. -I./lib -Ilib -I./lib -Isrc -I./src -g -O2 -MT src/mv.o -MD -MP -MF src/.deps/mv.Tpo -c -o src/mv.o src/mv.c
+gcc -g -O2 -Wl,--as-needed -o src/mv \
+    src/mv.o src/remove.o src/copy.o src/cp-hash.o src/extent-scan.o src/force-link.o src/selinux.o src/libver.a lib/libcoreutils.a lib/libcoreutils.a \
+    -lselinux -lacl -lattr -pthread  -lpcre2-8 -ldl -static
+
+
+# remove.o
+gcc -I. -I./lib -Ilib -I./lib -Isrc -I./src -g -O2 -MT src/remove.o -MD -MP -MF src/.deps/remove.Tpo -c -o src/remove.o src/remove.c
+
+# copy.o
+gcc -I. -I./lib -Ilib -I./lib -Isrc -I./src -g -O2 -MT src/copy.o -MD -MP -MF src/.deps/copy.Tpo -c -o src/copy.o src/copy.c
+
+# cp-hash.o
+gcc -I. -I./lib -Ilib -I./lib -Isrc -I./src -g -O2 -MT src/cp-hash.o -MD -MP -MF src/.deps/cp-hash.Tpo -c -o src/cp-hash.o src/cp-hash.c
+
+# extent-scan.o
+gcc -I. -I./lib -Ilib -I./lib -Isrc -I./src -g -O2 -MT src/extent-scan.o -MD -MP -MF src/.deps/extent-scan.Tpo -c -o src/extent-scan.o src/extent-scan.c
+
+# force-link.o
+gcc -I. -I./lib -Ilib -I./lib -Isrc -I./src -g -O2 -MT src/force-link.o -MD -MP -MF src/.deps/force-link.Tpo -c -o src/force-link.o src/force-link.c
+
+# selinux.o
+gcc -I. -I./lib -Ilib -I./lib -Isrc -I./src -g -O2 -MT src/selinux.o -MD -MP -MF src/.deps/selinux.Tpo -c -o src/selinux.o src/selinux.c
+
+# libver.a
+ar cr src/libver.a src/version.o
+
+# libcoreutils.a
+ar cr lib/libcoreutils.a lib/copy-acl.o lib/set-acl.o lib/acl-errno-valid.o lib/acl-internal.o lib/get-permissions.o lib/set-permissions.o \
+    lib/allocator.o lib/areadlink.o lib/areadlink-with-size.o lib/areadlinkat.o lib/argmatch.o lib/argv-iter.o lib/openat-proc.o lib/backupfile.o \
+    lib/backup-rename.o lib/backupfile.o lib/backup-find.o lib/base32.o lib/base64.o lib/binary-io.o lib/bitrotate.o lib/buffer-lcm.o lib/c-ctype.o \
+    lib/c-strcasecmp.o lib/c-strncasecmp.o lib/c-strtod.o lib/c-strtold.o lib/canon-host.o lib/canonicalize.o lib/careadlinkat.o lib/chmodat.o lib/chownat.o \
+    lib/cl-strtod.o lib/cl-strtold.o lib/cloexec.o lib/close-stream.o lib/closein.o lib/closeout.o lib/count-leading-zeros.o lib/af_alg.o lib/md5.o lib/sha1.o \
+    lib/sha256.o lib/sha512.o lib/cycle-check.o lib/di-set.o lib/diacrit.o lib/opendir-safer.o lib/dirname.o lib/basename.o lib/dirname-lgpl.o lib/basename-lgpl.o \
+    lib/stripslash.o lib/dtoastr.o lib/dtotimespec.o lib/exclude.o lib/exitfail.o lib/fadvise.o lib/creat-safer.o lib/open-safer.o lib/fd-hook.o lib/fd-reopen.o \
+    lib/fd-safer-flag.o lib/dup-safer-flag.o lib/fdutimensat.o lib/file-has-acl.o lib/file-set.o lib/file-type.o lib/filemode.o lib/filenamecat.o lib/filenamecat-lgpl.o \
+    lib/filevercmp.o lib/fopen-safer.o lib/fprintftime.o lib/freading.o lib/freadseek.o lib/freopen-safer.o lib/ftoastr.o lib/full-read.o lib/full-write.o lib/gethrxtime.o \
+    lib/xtime.o lib/getndelim2.o lib/getprogname.o lib/gettime.o lib/getugroups.o lib/hard-locale.o lib/hash.o lib/hash-pjw.o lib/hash-triple.o lib/heap.o lib/human.o lib/i-ring.o \
+    lib/idcache.o lib/ino-map.o lib/imaxtostr.o lib/inttostr.o lib/offtostr.o lib/uinttostr.o lib/umaxtostr.o lib/ldtoastr.o lib/linebuffer.o lib/localcharset.o \
+    lib/glthread/lock.o lib/long-options.o lib/malloca.o lib/math.o lib/mbchar.o lib/mbiter.o lib/mbsalign.o lib/mbscasecmp.o lib/mbschr.o lib/mbslen.o lib/mbsstr.o \
+    lib/mbswidth.o lib/mbuiter.o lib/memcasecmp.o lib/memchr2.o lib/memcmp2.o lib/memcoll.o lib/mgetgroups.o lib/mkancesdirs.o lib/dirchownmod.o lib/mkdir-p.o lib/modechange.o \
+    lib/mpsort.o lib/nproc.o lib/nstrftime.o lib/openat-die.o lib/openat-safer.o lib/opendirat.o lib/parse-datetime.o lib/physmem.o lib/pipe2.o lib/posixtm.o lib/posixver.o \
+    lib/printf-frexp.o lib/printf-frexpl.o lib/priv-set.o lib/progname.o lib/propername.o lib/qcopy-acl.o lib/qset-acl.o lib/quotearg.o lib/randint.o lib/randperm.o \
+    lib/randread.o lib/rand-isaac.o lib/read-file.o lib/readtokens.o lib/readtokens0.o lib/renameatu.o lib/root-dev-ino.o lib/safe-read.o lib/safe-write.o lib/same.o \
+    lib/save-cwd.o lib/savedir.o lib/savewd.o lib/selinux-at.o lib/se-context.o lib/se-selinux.o lib/setlocale_null.o lib/settime.o lib/sig-handler.o lib/sockets.o \
+    lib/stat-time.o lib/statat.o lib/mkstemp-safer.o lib/striconv.o lib/strnlen1.o lib/strintcmp.o lib/strnumcmp.o lib/sys_socket.o lib/tempname.o lib/glthread/threadlib.o \
+    lib/timespec.o lib/glthread/tls.o lib/trim.o lib/u64.o lib/unicodeio.o lib/unistd.o lib/dup-safer.o lib/fd-safer.o lib/pipe-safer.o lib/unistr/u8-mbtoucr.o \
+    lib/unistr/u8-uctomb.o lib/unistr/u8-uctomb-aux.o lib/uniwidth/width.o lib/unlinkdir.o lib/userspec.o lib/utimecmp.o lib/utimens.o lib/verror.o lib/version-etc.o \
+    lib/version-etc-fsf.o lib/wctype-h.o lib/write-any-file.o lib/xmalloc.o lib/xalloc-die.o lib/xbinary-io.o lib/xdectoimax.o lib/xdectoumax.o lib/xfts.o lib/xgetcwd.o \
+    lib/xgetgroups.o lib/xgethostname.o lib/xmemcoll.o lib/xnanosleep.o lib/xprintf.o lib/xreadlink.o lib/xsize.o lib/xstriconv.o lib/xstrndup.o lib/xstrtod.o \
+    lib/xstrtoimax.o lib/xstrtol.o lib/xstrtoul.o lib/xstrtol-error.o lib/xstrtold.o lib/xstrtoumax.o lib/xvasprintf.o lib/xasprintf.o lib/yesno.o \
+    lib/asnprintf.o lib/chdir-long.o lib/fchmodat.o lib/fclose.o lib/fcntl.o lib/fflush.o lib/fpurge.o lib/freadahead.o lib/freadptr.o lib/fseek.o \
+    lib/fseeko.o lib/fseterr.o lib/fsusage.o lib/fts.o lib/getfilecon.o lib/isapipe.o lib/lchmod.o lib/localtime-buffer.o lib/mbrlen.o lib/mbrtowc.o \
+    lib/mknod.o lib/mkstemp.o lib/mktime.o lib/mountlist.o lib/nanosleep.o lib/obstack.o lib/printf-args.o lib/printf-parse.o lib/readutmp.o lib/regex.o \
+    lib/sig2str.o lib/time_rz.o lib/vasnprintf.o
+    
+
+
+
+
