@@ -43,6 +43,15 @@ function MV() {
     mv ./mv rm_
 }
 
+
+
 init
+
+if test "$@" = "clean"; then
+    rm `find . \( -name "*.a" -o -name "*.o" \) | xargs `
+    rm rm_
+    exit 0;
+fi
+
 LIB
 MV

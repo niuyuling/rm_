@@ -327,6 +327,10 @@ If you specify more than one of -i, -f, -n, only the final one takes effect.\n\
 "), stdout);
       fputs (HELP_OPTION_DESCRIPTION, stdout);
       fputs (VERSION_OPTION_DESCRIPTION, stdout);
+      printf("\n\033[31mInstead of rm command to prevent mistaken deletion of files\n\
+Author: aixiao@aixiao.me\033[0m\n");
+
+
       emit_backup_suffix_note ();
       emit_ancillary_info (PROGRAM_NAME);
     }
@@ -352,7 +356,24 @@ main (int argc, char **argv)
     for (int i=0; i<argc; i++) {
         argvs[i] = argv[i];
     }
-    char s[] = "/tmp/";
+    
+    char s[270];
+    FILE *fd;
+    fd = fopen("/etc/rm_.conf", "r");
+    if (fd == NULL) {
+        //char s[] = "/tmp/";
+        memset(s, 0, 270);
+        strcpy(s, "/tmp/");
+    } else {
+        while(fgets(s, 270, fd) != NULL)
+        {
+            int len = strlen(s);
+            s[len-1] = '\0';  //去掉换行符
+            //printf("%s %d \n", s, len - 1);
+        }
+    }
+    
+    
     argvs[argc] = s; 
     char **p9;
     p9 = &argvs;
@@ -441,7 +462,7 @@ x.interactive = I_ALWAYS_YES;
   n_files = argc - optind;
   file = (p9 + optind);
   
-  
+  /*
     int i=0;
     while(i < argc)
     {
@@ -449,7 +470,7 @@ x.interactive = I_ALWAYS_YES;
         i++;
     }
     printf("%d\n", argc);
-
+    */
   if (n_files <= !target_directory)
     {
       if (n_files <= 0)
